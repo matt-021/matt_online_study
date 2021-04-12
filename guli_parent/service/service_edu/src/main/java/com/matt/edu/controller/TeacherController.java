@@ -89,7 +89,7 @@ public class TeacherController {
 						  @ApiParam(name = "limit",value = "每页记录数",required = true)
 	  					  @PathVariable long limit,
 	  					  
-	  					  @RequestBody TeacherQuery teacherQuery) {
+	  					  @RequestBody(required = false) TeacherQuery teacherQuery) {
 		
 		//分页
 		Page<Teacher> pageParam = new Page<>(page, limit);
@@ -115,6 +115,8 @@ public class TeacherController {
 		if (!StringUtils.isEmpty(end)) {
 			queryWrapper.le("gmt_create", end);
 		}
+		 //排序
+		queryWrapper.orderByDesc("gmt_create");
 		
 	    teacherService.page(pageParam, queryWrapper);
 	    List<Teacher> records = pageParam.getRecords();
@@ -125,7 +127,7 @@ public class TeacherController {
 	
 	
 	@ApiOperation(value = "新增讲师")
-	@PostMapping
+	@PostMapping("add")
 	public R save(
 			@ApiParam(name = "teacher", value = "讲师对象", required = true)
 			@RequestBody Teacher teacher){
