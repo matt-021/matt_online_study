@@ -12,7 +12,7 @@ import com.matt.commonutils.R;
  * 登入测试
  */
 @RestController
-@RequestMapping("/eduService/user")
+@RequestMapping("/edu/user")
 @CrossOrigin
 public class Login {
 

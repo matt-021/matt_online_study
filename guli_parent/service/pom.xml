@@ -124,5 +124,6 @@
 </dependencies>
 <modules>
 	<module>service_edu</module>
+	<module>aliyun-oss</module>
 </modules>
 </project>
