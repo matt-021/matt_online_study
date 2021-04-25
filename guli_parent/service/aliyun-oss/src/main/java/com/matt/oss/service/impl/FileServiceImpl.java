@@ -1,9 +1,12 @@
 package com.matt.oss.service.impl;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +41,11 @@ public class FileServiceImpl implements FileService {
 
 			//获取上传文件流
 			InputStream inputStream = file.getInputStream();
-
+			
+			/*
+			 * System.out.println("======"+file.getName());
+			 * System.out.println("==2===="+file.getOriginalFilename()); int a=1/0;
+			 */
 			//构建日期路径：avatar/2019/02/26/文件名
 			String filePath = new DateTime().toString("yyyy/MM/dd");
 			System.out.println(filePath);
