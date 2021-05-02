@@ -40,8 +40,7 @@ public class FileController {
 		return R.ok().message("文件上传成功").data("url", uploadUrl);
 
 	}
-	@RequestMapping("test")
-	public R test() {
-		return R.ok();
-	}
+	/*
+	 * @RequestMapping("test") public R test() { return R.ok(); }
+	 */
 }

@@ -46,12 +46,6 @@ public class TeacherController {
 	@ApiOperation(value = "所有讲师列表")
 	@GetMapping("findAll")
 	public R teacherList(){
-		try {
-			int a = 10/0;
-		} catch (Exception e) {
-			throw new MattException(250,"自定义异常");
-		}
-		
 		List<Teacher> list = teacherService.list(null);
 		return R.ok().data("items", list);
 	}

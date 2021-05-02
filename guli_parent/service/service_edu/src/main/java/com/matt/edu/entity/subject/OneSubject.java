@@ -5,7 +5,26 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-//一级分类
+/*[       {  
+    id: 1,  
+    label: 'Level one 1',  
+    children: [{  
+      id: 4,  
+      label: 'Level two 1-1',  
+    }]  
+  }, {  
+    id: 2,  
+    label: 'Level one 2',  
+    children: [{  
+      id: 5,  
+      label: 'Level two 2-1'  
+    }, {  
+      id: 6,  
+      label: 'Level two 2-2'  
+    }]  
+  }  
+]*/ 
+//一级分类  根据前端所需的数据格式 设计的封装类
 
 public class OneSubject {
     public String getId() {

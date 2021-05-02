@@ -37,8 +37,8 @@ public class GlobalExceptionHandler {
 		@ExceptionHandler(MattException.class)
 		@ResponseBody
 		public R error(MattException e){
-			log.error(ExceptionUtil.getMessage(e));
-		    e.printStackTrace();
+			log.error(ExceptionUtil.getMessage(e));//通过工具类将异常转换成字符串
+		    e.printStackTrace();//这个方法是void 只能在控制台输出
 		    return R.error().message(e.getMeg()).code(e.getCode());
 		}
 		

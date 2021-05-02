@@ -87,6 +87,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
 		InputStream inputStream;
 		try {
 			inputStream = file.getInputStream();
+			//在监听器中读取数据 并保存到数据库
 			EasyExcel.read(inputStream, SubjectData.class, new SubjectExcelListener(this)).sheet().doRead();
 			
 		} catch (IOException e) {
