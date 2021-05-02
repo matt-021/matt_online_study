@@ -68,4 +68,21 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 		    return courseInfoForm;
 	}
 
+	@Override
+	public void updateCourseInfo(CourseInfoForm courseInfoVo) {
+		 //1 修改课程表
+        Course eduCourse = new Course();
+        BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        int update = baseMapper.updateById(eduCourse);
+        if(update == 0) {
+            throw new MattException(20001,"修改课程信息失败");
+        }
+
+        //2 修改描述表
+        CourseDescription description = new CourseDescription();
+        description.setId(courseInfoVo.getId());
+        description.setDescription(courseInfoVo.getDescription());
+        courseDescriptionService.updateById(description);
+	}
+
 }

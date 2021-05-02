@@ -58,6 +58,13 @@ public class CourseController {
 	    CourseInfoForm courseInfoForm = courseService.getCourseInfoFormById(id);
 	    return R.ok().data("item", courseInfoForm);
 	}
+	 //修改课程信息
+    @PostMapping("updateCourseInfo")
+    public R updateCourseInfo(@RequestBody CourseInfoForm courseInfoVo) {
+    	  courseService.updateCourseInfo(courseInfoVo);
+          return R.ok();
+    }
+
 
 }
 
