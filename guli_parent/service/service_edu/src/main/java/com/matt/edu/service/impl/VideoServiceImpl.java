@@ -1,10 +1,12 @@
 package com.matt.edu.service.impl;
 
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.matt.edu.entity.Video;
 import com.matt.edu.mapper.VideoMapper;
 import com.matt.edu.service.VideoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -16,5 +18,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements VideoService {
+
+	@Override
+	public boolean getCountByChapterId(String chapterId) {
+		   QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
+		    queryWrapper.eq("chapter_id", chapterId);
+		    Integer count = baseMapper.selectCount(queryWrapper);
+		    return null != count && count > 0;
+	}
 
 }

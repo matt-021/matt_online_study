@@ -1,7 +1,10 @@
 package com.matt.edu.service;
 
-import com.matt.edu.entity.Chapter;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.matt.edu.entity.Chapter;
+import com.matt.edu.entity.chapter.ChapterVo;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-04-27
  */
 public interface ChapterService extends IService<Chapter> {
-
+	//获取章节和小节数据列表
+	List<ChapterVo> nestedList(String courseId);
+	boolean removeChapterById(String id);
 }

@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-04-27
  */
 public interface VideoService extends IService<Video> {
-
+	boolean getCountByChapterId(String chapterId);
 }

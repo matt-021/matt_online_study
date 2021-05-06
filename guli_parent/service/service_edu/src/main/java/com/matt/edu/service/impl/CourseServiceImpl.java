@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.matt.edu.entity.Course;
 import com.matt.edu.entity.CourseDescription;
 import com.matt.edu.entity.course.CourseInfoForm;
+import com.matt.edu.entity.vo.CoursePublishVo;
 import com.matt.edu.mapper.CourseMapper;
 import com.matt.edu.service.CourseDescriptionService;
 import com.matt.edu.service.CourseService;
@@ -83,6 +84,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         description.setId(courseInfoVo.getId());
         description.setDescription(courseInfoVo.getDescription());
         courseDescriptionService.updateById(description);
+	}
+	//课程发布信息回显
+	@Override
+	public CoursePublishVo getCoursePublishVoById(String id) {
+		 return baseMapper.getCoursePublishVoById(id);
 	}
 
 }

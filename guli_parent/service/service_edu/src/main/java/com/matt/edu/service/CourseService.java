@@ -1,8 +1,9 @@
 package com.matt.edu.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.matt.edu.entity.Course;
 import com.matt.edu.entity.course.CourseInfoForm;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.matt.edu.entity.vo.CoursePublishVo;
 
 /**
  * <p>
@@ -25,5 +26,9 @@ public interface CourseService extends IService<Course> {
 	CourseInfoForm getCourseInfoFormById(String id);
 
 	void updateCourseInfo(CourseInfoForm courseInfoVo);
+	//课程发布页面数据信息
+	CoursePublishVo getCoursePublishVoById(String id);
+
+	
 
 }

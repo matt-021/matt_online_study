@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.excel.util.StringUtils;
 import com.matt.commonutils.R;
+import com.matt.edu.entity.Course;
 import com.matt.edu.entity.course.CourseInfoForm;
+import com.matt.edu.entity.vo.CoursePublishVo;
 import com.matt.edu.service.CourseService;
 
 import io.swagger.annotations.Api;
@@ -63,6 +65,25 @@ public class CourseController {
     public R updateCourseInfo(@RequestBody CourseInfoForm courseInfoVo) {
     	  courseService.updateCourseInfo(courseInfoVo);
           return R.ok();
+    }
+    @ApiOperation(value = "根据ID获取课程发布信息")
+    @GetMapping("course-publish-info/{id}")
+    public R getCoursePublishVoById(
+        @ApiParam(name = "id", value = "课程ID", required = true)
+        @PathVariable String id){
+
+        CoursePublishVo courseInfoForm = courseService.getCoursePublishVoById(id);
+        return R.ok().data("publishCourse", courseInfoForm);
+    }
+    //课程最终发布
+    //修改课程状态
+    @PostMapping("publishCourse/{id}")
+    public R publishCourse(@PathVariable String id) {
+        Course eduCourse = new Course();
+        eduCourse.setId(id);
+        eduCourse.setStatus("Normal");//设置课程发布状态
+        courseService.updateById(eduCourse);
+        return R.ok();
     }
 
 
