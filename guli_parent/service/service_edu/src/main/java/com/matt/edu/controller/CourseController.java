@@ -1,8 +1,11 @@
 package com.matt.edu.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.excel.util.StringUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.matt.commonutils.R;
 import com.matt.edu.entity.Course;
 import com.matt.edu.entity.course.CourseInfoForm;
+import com.matt.edu.entity.course.CourseQuery;
 import com.matt.edu.entity.vo.CoursePublishVo;
 import com.matt.edu.service.CourseService;
 
@@ -85,6 +91,44 @@ public class CourseController {
         courseService.updateById(eduCourse);
         return R.ok();
     }
+    //课程列表
+    @PostMapping("/pageTeacherCondition/{current}/{limit}")
+    public R pageCourseCondition(@PathVariable long current, @PathVariable long limit,
+                                 @RequestBody(required = false)CourseQuery courseQuery) {
+
+        Page<Course> page = new Page<>(current,limit);
+        QueryWrapper<Course> wrapper = new QueryWrapper();
+
+        if(!StringUtils.isEmpty(courseQuery.getTitle())) {
+            wrapper.like("title",courseQuery.getTitle());
+        }
+
+        if(!StringUtils.isEmpty(courseQuery.getStatus())) {
+            wrapper.eq("status",courseQuery.getStatus());
+        }
+
+        if(!StringUtils.isEmpty(courseQuery.getBegin())) {
+            wrapper.ge("gmt_create",courseQuery.getBegin());
+        }
+
+        if(!StringUtils.isEmpty(courseQuery.getEnd())) {
+            wrapper.le("gmt_modified",courseQuery.getEnd());
+        }
+
+        this.courseService.page(page,wrapper);
+        long total = page.getTotal(); //总记录数
+        List<Course> records = page.getRecords();  //list集合
+
+        return R.ok().data("total",total).data("rows",records);
+    }
+    
+    //删除课程
+    @DeleteMapping("{courseId}")
+    public R deleteCourse(@PathVariable String courseId) {
+        this.courseService.removeCourse(courseId);
+        return R.ok();
+    }
+
 
 
 }

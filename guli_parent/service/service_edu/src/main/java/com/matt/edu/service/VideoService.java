@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface VideoService extends IService<Video> {
 	boolean getCountByChapterId(String chapterId);
+
+	void removeVideoCourseId(String courseId);
 }

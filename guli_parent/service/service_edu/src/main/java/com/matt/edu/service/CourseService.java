@@ -29,6 +29,8 @@ public interface CourseService extends IService<Course> {
 	//课程发布页面数据信息
 	CoursePublishVo getCoursePublishVoById(String id);
 
+	void removeCourse(String courseId);
+
 	
 
 }

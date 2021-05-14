@@ -1,4 +1,4 @@
-package com.matt.oss;
+package com.matt.vod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableDiscoveryClient
-@ComponentScan({"com.matt"})
-public class OssApplication {
+@ComponentScan(basePackages={"com.matt"})
+public class VodApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(OssApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(VodApplication.class, args);
+	}
 }

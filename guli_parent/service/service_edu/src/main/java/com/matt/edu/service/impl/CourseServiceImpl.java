@@ -10,8 +10,10 @@ import com.matt.edu.entity.CourseDescription;
 import com.matt.edu.entity.course.CourseInfoForm;
 import com.matt.edu.entity.vo.CoursePublishVo;
 import com.matt.edu.mapper.CourseMapper;
+import com.matt.edu.service.ChapterService;
 import com.matt.edu.service.CourseDescriptionService;
 import com.matt.edu.service.CourseService;
+import com.matt.edu.service.VideoService;
 import com.matt.service_base.exception.MattException;
 
 /**
@@ -27,6 +29,13 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
 	@Autowired
 	private CourseDescriptionService courseDescriptionService;
+	
+
+    @Autowired
+    private VideoService videoService;
+
+    @Autowired
+    private ChapterService chapterService;
 
 	@Override
 	public String saveCourseInfo(CourseInfoForm courseInfoForm) {
@@ -90,5 +99,15 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 	public CoursePublishVo getCoursePublishVoById(String id) {
 		 return baseMapper.getCoursePublishVoById(id);
 	}
+	@Override
+	public void removeCourse(String courseId) {
+		this.videoService.removeVideoCourseId(courseId);
+		this.chapterService.removeChapterById(courseId);
+		this.courseDescriptionService.removeById(courseId);
+		int res = baseMapper.deleteById(courseId);
+		if (res == 0) {
+			throw new MattException(20001, "删除失败");
+		}
+	}		  
 
 }
