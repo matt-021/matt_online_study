@@ -128,5 +128,8 @@
 	<module>service_edu</module>
 	<module>aliyun-oss</module>
 	<module>aliyun_vod</module>
+	<module>service-cms</module>
+<module>service-msm</module>
+	<module>service-ucenter</module>
 </modules>
 </project>

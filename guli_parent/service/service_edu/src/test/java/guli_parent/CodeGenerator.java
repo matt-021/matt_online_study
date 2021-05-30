@@ -1,4 +1,4 @@
-package guli_parent;
+package java.guli_parent;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
